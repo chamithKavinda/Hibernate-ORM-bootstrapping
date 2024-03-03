@@ -12,7 +12,28 @@ public class SessionFactoryConfig {
 
     private static SessionFactoryConfig factoryConfig;
 
-    private SessionFactoryConfig(){}
+    private  final SessionFactory sessionFactory;
+
+    private SessionFactoryConfig() {
+        //1.create a Service Registry
+        StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+                .configure()
+                .build();
+
+        // 2.create a MetaData object
+        Metadata metadata = new MetadataSources(serviceRegistry)
+                .addAnnotatedClass(Customer.class)
+                .getMetadataBuilder()
+                .build();
+
+        // 3.Create a Session Factory
+        sessionFactory = metadata
+                .buildSessionFactory();
+    }
+
+    private SessionFactoryConfig(SessionFactory sessionFactory){
+        this.sessionFactory = sessionFactory;
+    }
 
     public static SessionFactoryConfig getInstance(){
         return (null == factoryConfig) ? factoryConfig = new SessionFactoryConfig(): factoryConfig;

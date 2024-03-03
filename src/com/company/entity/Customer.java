@@ -1,9 +1,14 @@
 package com.company.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.company.embedded.MobileNumber;
+import com.company.embedded.Nameidentifire;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.*;
+import java.security.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 //@Entity(name = "customer")
 @Entity
@@ -14,53 +19,78 @@ public class Customer {
     @Column(name = "customer_id")
     private int id;
 
+
     @Column(name = "customer_name")
-    private String name;
+    private Nameidentifire name;
 
-    @Column(name = "customer_address")
-    private String address;
+    @Column(name = "customer_address" , length = 100 ,nullable = false)
+    private  String address;
 
+    @Transient
     @Column(name = "customer_salary")
-    private double salary;
+    private  double salary;
+
+    @CreationTimestamp
+    private Timestamp createdDateTime;
+
+    @UpdateTimestamp
+    private Timestamp updateDateTime;
+
+    @ElementCollection
+    @CollectionTable(name = "customer_mobile_nos" ,joinColumns = @JoinColumn(name = "customer_id"))
+    private List<MobileNumber>mobileNumbers = new ArrayList<>();
+
+    @Transient
+    @Column(name ="customer_age")
+    private int age;
 
     public Customer(){}
 
-    public Customer(int id, String name, String address, double salary) {
+    public Customer(int id, Nameidentifire name, String address, double salary, Timestamp createdDateTime, Timestamp updateDateTime, List<MobileNumber> mobileNumbers, int age) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.salary = salary;
+        this.createdDateTime = createdDateTime;
+        this.updateDateTime = updateDateTime;
+        this.mobileNumbers = mobileNumbers;
+        this.age = age;
     }
 
-    public int getId() {
-        return id;
+    public Nameidentifire getName() {
+        return name;
+    }
+
+    public void setName(Nameidentifire name) {
+        this.name = name;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", salary=" + salary + '\'' +
+                ", mobileNo=" + mobileNumbers +
+                '}';
     }
 
-    public void setName(String name) {
-        this.name = name;
+
+        public List<MobileNumber> getMobileNumbers() {
+            return mobileNumbers;
+        }
+
+        public void setMobileNumbers(List<MobileNumber> mobileNumbers) {
+            this.mobileNumbers = mobileNumbers;
+        }
+
+    public void setAddress(String matara) {
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
+    public void setSalary(int i) {
     }
 }
