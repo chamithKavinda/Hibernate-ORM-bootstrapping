@@ -21,15 +21,6 @@ public class Customer {
 
     public Customer(){}
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                '}';
-    }
-
     public int getId() {
         return id;
     }
