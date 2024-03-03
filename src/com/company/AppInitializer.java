@@ -1,12 +1,10 @@
 package com.company;
 
-import com.company.config.SessionFactoryConfig;
 import com.company.embedded.MobileNumber;
 import com.company.embedded.Nameidentifire;
 import com.company.entity.Customer;
 import com.company.repository.CustomerRepository;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,14 +91,14 @@ public class AppInitializer {
         List<MobileNumber> mobileNumbers = new ArrayList<>();
         mobileNumbers.add(homeNo);
         mobileNumbers.add(mobileNo);
-        customer.setMobileNumbers(mobileNumbers);
+       // customer.setMobileNumbers(mobileNumbers);
 
 //          nameidentifire.setFirstName("Saman");
 //          nameidentifire.setMiddleName("De");
 //          nameidentifire.setLastName("Silva");
-        customer.setName(nameidentifire);
+       // customer.setName(nameidentifire);
         customer.setAddress("Matara");
-        customer.setSalary(50000);
+      //  customer.setSalary(50000);
         return customer;
     }
 
