@@ -37,6 +37,13 @@ public class AppInitializer {
         Customer customer = customerRepository.getCustomer(1);
         System.out.println(customer);
 
+        customerRepository = new CustomerRepository();
+        customer.setAddress("Galle");
+        customerRepository.updateCustomer(customer);
+
+        customerRepository = new CustomerRepository();
+        customerRepository.deleteCustomer(customer);
+
 //        customerRepository = new CustomerRepository();
 //        customer.setAddress("Galle");
 //        customerRepository.updateCustomer(customer);

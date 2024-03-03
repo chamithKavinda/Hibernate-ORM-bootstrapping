@@ -28,15 +28,18 @@ public class Order {
     @JoinColumn(name =  "customer_id")
     private  Customer customer;
 
-    @ManyToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY )
-    private List<Item> items = new ArrayList<>();
+//    @ManyToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY )
+//    private List<Item> items = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+    private  List<OrderDetail> orderDetails = new ArrayList<>();
 
     @Override
     public String toString() {
         return "Order{" +
-                "orderId='" + orderId + '\'' +
+                "orderId=" + orderId +
                 ", description='" + description + '\'' +
-                ", orderDateTime='" + orderDateTime + '\'' +
+                ", orderDateTime=" + orderDateTime +
+                ", customer=" + customer +
                 '}';
     }
 

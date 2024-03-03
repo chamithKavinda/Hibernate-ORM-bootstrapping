@@ -33,6 +33,7 @@ public class Item {
                 ", name=" + name +
                 ", qty=" + qty +
                 ", unitPrice=" + unitPrice +
+                ", orders=" + orders +
                 '}';
     }
 
