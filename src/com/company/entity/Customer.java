@@ -1,13 +1,12 @@
 package com.company.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Customer")
 public class Customer {
-
-    @Id //tells Hibernate that this is the primary key of this
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "customer_id")
     private  int id;
@@ -15,9 +14,11 @@ public class Customer {
     @Column(name = "Customer_name")
     private  String name;
 
-
     @Column(name = "Customer_address")
     private  String address;
+
+    @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+    private List<Order> orders = new ArrayList<>();
 
     public Customer(){}
 
