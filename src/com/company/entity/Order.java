@@ -1,9 +1,10 @@
 package com.company.entity;
 
-import jdk.jfr.Timespan;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+
 @Entity
 @Table(name = "orders")  //`order`
 public class Order {
@@ -12,14 +13,14 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "order_id")
-    private String orderId;
+    private int orderId;
 
     @Column(name = "order_description")
     private String description;
 
     @CreationTimestamp
     @Column(name = "order_date_time")
-    private String orderDateTime;
+    private Timestamp orderDateTime;
 
     @ManyToOne
     @JoinColumn(name =  "customer_id")
@@ -36,11 +37,11 @@ public class Order {
 
 
 
-    public String getOrderId() {
+    public int getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(String orderId) {
+    public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
 
@@ -52,16 +53,16 @@ public class Order {
         this.description = description;
     }
 
-    public String getOrderDateTime() {
+    public Timestamp getOrderDateTime() {
         return orderDateTime;
     }
 
-    public void setOrderDateTime(String orderDateTime) {
+    public void setOrderDateTime(Timestamp orderDateTime) {
         this.orderDateTime = orderDateTime;
     }
 
 
-    public Order(String orderId, String description, String orderDateTime) {
+    public Order(int orderId, String description, Timestamp orderDateTime) {
         this.orderId = orderId;
         this.description = description;
         this.orderDateTime = orderDateTime;

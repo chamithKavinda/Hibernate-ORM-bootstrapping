@@ -17,10 +17,21 @@ public class Customer {
     @Column(name = "Customer_address")
     private  String address;
 
-    @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY , mappedBy = "customer")
     private List<Order> orders = new ArrayList<>();
 
-    public Customer(){}
+    public int Customer(){
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 
     public int getId() {
         return id;

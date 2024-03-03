@@ -1,6 +1,7 @@
 package com.company.config;
 
 import com.company.entity.Customer;
+import com.company.entity.Order;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -44,6 +45,7 @@ public class SessionFactoryConfig {
         sessionFactory =new Configuration()
                 .configure()
                 .addAnnotatedClass(Customer.class)
+                .addAnnotatedClass(Order.class)
                 .buildSessionFactory();
     }
 
