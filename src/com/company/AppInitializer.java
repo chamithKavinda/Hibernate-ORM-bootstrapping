@@ -34,38 +34,47 @@ public class AppInitializer {
 
         CustomerRepository customerRepository =new CustomerRepository();
         customerRepository.saveCustomer(getCustomer());
+
+        customerRepository = new CustomerRepository();
+        Customer customer = customerRepository.getCustomer(1);
+        System.out.println(customer);
+
+        customerRepository = new CustomerRepository();
+        customer.setAddress("Galle");
+        customerRepository.updateCustomer(customer);
     }
-/*
-            //2.get
-        System.out.println("----------GET-----------");
-        Session getSession = SessionFactoryConfig.getInstance().getSession();
-        Customer existCustomer = getSession.get(Customer.class, 1);
-        System.out.println("Existing Customer:" + existCustomer.toString());
-        getSession.close();
+//            //2.get
+//        System.out.println("----------GET-----------");
+//        Session getSession = SessionFactoryConfig.getInstance().getSession();
+//        Customer existCustomer = getSession.get(Customer.class, 1);
+//        System.out.println("Existing Customer:" + existCustomer.toString());
+//        getSession.close();
+//
+//
+//        //3.update
+//        System.out.println("----------UPDATE-----------");
+//        Session updateSession = SessionFactoryConfig.getInstance().getSession();
+//        Transaction updateTransaction =updateSession.beginTransaction();
+//        Customer existCus = updateSession.get(Customer.class,1);
+//        existCus.setAddress("Matara");
+//        updateSession.update(existCus);
+//        updateTransaction.commit();
+//        updateSession.close();
+//
+//
+//        //4.delete
+//        System.out.println("----------DELETE-----------");
+//        Session deleteSession =SessionFactoryConfig.getInstance().getSession();
+//        Transaction deleteTransaction = deleteSession.beginTransaction();
+//        Customer deleteCus =deleteSession.get(Customer.class,1);
+//        deleteSession.delete(deleteCus);
+//        deleteTransaction.commit();
+//        deleteSession.close();
+//        }
 
 
-        //3.update
-        System.out.println("----------UPDATE-----------");
-        Session updateSession = SessionFactoryConfig.getInstance().getSession();
-        Transaction updateTransaction =updateSession.beginTransaction();
-        Customer existCus = updateSession.get(Customer.class,1);
-        existCus.setAddress("Matara");
-        updateSession.update(existCus);
-        updateTransaction.commit();
-        updateSession.close();
-
-
-        //4.delete
-        System.out.println("----------DELETE-----------");
-        Session deleteSession =SessionFactoryConfig.getInstance().getSession();
-        Transaction deleteTransaction = deleteSession.beginTransaction();
-        Customer deleteCus =deleteSession.get(Customer.class,1);
-        deleteSession.delete(deleteCus);
-        deleteTransaction.commit();
-        deleteSession.close();
-        }
-    */
     private static Customer getCustomer() {
+
         Customer customer = new Customer();
         customer.setId(5);
         Nameidentifire nameidentifire =  getNameIdentifire();
