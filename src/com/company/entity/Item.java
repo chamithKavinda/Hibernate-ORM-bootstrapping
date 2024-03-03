@@ -1,6 +1,8 @@
 package com.company.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "item")
@@ -33,6 +35,9 @@ public class Item {
                 ", unitPrice=" + unitPrice +
                 '}';
     }
+
+    @ManyToMany(mappedBy = "items")
+    private List<Order> orders = new ArrayList<>();
 
     public void setId(int id) {
         this.id = id;

@@ -4,6 +4,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")  //`order`
@@ -25,6 +27,9 @@ public class Order {
     @ManyToOne
     @JoinColumn(name =  "customer_id")
     private  Customer customer;
+
+    @ManyToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY )
+    private List<Item> items = new ArrayList<>();
 
     @Override
     public String toString() {
