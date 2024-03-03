@@ -4,6 +4,7 @@ import com.company.config.SessionFactoryConfig;
 import com.company.embedded.MobileNumber;
 import com.company.embedded.Nameidentifire;
 import com.company.entity.Customer;
+import com.company.repository.CustomerRepository;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -15,14 +16,14 @@ public class AppInitializer {
 
         //1.save
         System.out.println("------------ save ------------");
-        Session session = SessionFactoryConfig.getInstance().getSession();
+        /*Session session = SessionFactoryConfig.getInstance().getSession();
 
 
         Transaction transaction = session.beginTransaction();
         Customer customer = getCustomer();
         session.save(customer);
         transaction.commit();
-        session.close();
+        session.close();*/
 
         /*Customer customer = new Customer();
         customer.setId(1);
@@ -30,6 +31,9 @@ public class AppInitializer {
         customer.setAddress("Galle");
         customer.setSalary(25000);
          session.save(customer);*/
+
+        CustomerRepository customerRepository =new CustomerRepository();
+        customerRepository.saveCustomer(getCustomer());
     }
 /*
             //2.get
