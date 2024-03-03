@@ -42,6 +42,9 @@ public class AppInitializer {
         customerRepository = new CustomerRepository();
         customer.setAddress("Galle");
         customerRepository.updateCustomer(customer);
+
+        customerRepository = new CustomerRepository();
+        customerRepository.deleteCustomer(customer);
     }
 //            //2.get
 //        System.out.println("----------GET-----------");
@@ -76,7 +79,8 @@ public class AppInitializer {
     private static Customer getCustomer() {
 
         Customer customer = new Customer();
-        customer.setId(5);
+
+        customer.setId(1);
         Nameidentifire nameidentifire =  getNameIdentifire();
         MobileNumber homeNo =new MobileNumber();
         homeNo.setType("Home");
