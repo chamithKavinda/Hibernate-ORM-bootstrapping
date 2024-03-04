@@ -24,5 +24,14 @@ public class GetVsLoad {
         System.out.println("Customer Name of Get: " + getCustomer.getName());
         getSession.close();
 
+
+        //2.Load
+        Session loadSession = SessionFactoryConfig.getInstance().getSession();
+
+        System.out.println("================Load=================");
+        Customer loadCustomer = loadSession.load(Customer.class,1);
+        System.out.println("Customer Id of Load: " + loadCustomer.getId());
+        System.out.println("Customer Name of Load: " + loadCustomer.getName());
+        loadSession.close();
     }
 }
