@@ -1,36 +1,23 @@
 package com.company;
 
-import com.company.embedded.MobileNumber;
-import com.company.embedded.Nameidentifire;
 import com.company.entity.Customer;
-import com.company.entity.Order;
 import com.company.projection.CustomerProjection;
 import com.company.repository.CustomerRepository;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
-public static class AppInitializer {
+public class AppInitializer {
     public static void main(String[] args) {
 
-        //1.save
-        System.out.println("------------ save ------------");
-        /*Session session = SessionFactoryConfig.getInstance().getSession();
-
-
-        Transaction transaction = session.beginTransaction();
-        Customer customer = getCustomer();
-        session.save(customer);
-        transaction.commit();
-        session.close();*/
-
-        /*Customer customer = new Customer();
-        customer.setId(1);
-        customer.setName("Saman");
-        customer.setAddress("Galle");
-        customer.setSalary(25000);
-         session.save(customer);*/
+        // 1. Save
+//        Session session = SessionFactoryConfig
+//                .getInstance()
+//                .getSession();
+//        Transaction transaction = session.beginTransaction();
+//        Customer customer = getCustomer();
+//        session.save(customer);
+//        transaction.commit();
+//        session.close();
 
         // Save
 //        CustomerRepository customerRepository
@@ -43,7 +30,7 @@ public static class AppInitializer {
 //        System.out.println(customer);
 
 
-        //        CustomerRepository customerRepository1 = new CustomerRepository();
+//        CustomerRepository customerRepository1 = new CustomerRepository();
 //        customerRepository1.getAllCustomersNative();
 //
 //        CustomerRepository customerRepository2 = new CustomerRepository();
@@ -51,6 +38,7 @@ public static class AppInitializer {
 //        for (Customer customer : allCustomerJPQL) {
 //            System.out.println(customer);
 //        }
+
 
 //        CustomerRepository customerRepository3
 //                = new CustomerRepository();
@@ -60,42 +48,18 @@ public static class AppInitializer {
 //            System.out.println(order);
 //        }
 
-        //    CustomerRepository customerRepository =new CustomerRepository();
+//        CustomerRepository customerRepository =new CustomerRepository();
 //        List<Customer> customerList = customerRepository.getCustomerHQL();
 //        for(Customer customer : customerList){
 //            System.out.println(customer);
 //
 //        }
 
-
-//        customerRepository = new CustomerRepository();
-//        customer.setAddress("Galle");
-//        customerRepository.updateCustomer(customer);
-
-//
-//          customerRepository = new CustomerRepository();
-//          customerRepository.deleteCustomer(customer);
-
-//        customerRepository = new CustomerRepository();
-//        customer.setAddress("Galle");
-//        customerRepository.updateCustomer(customer);
-
-//        customerRepository = new CustomerRepository();
-//        customerRepository.deleteCustomer(customer);
-    }
-//            //2.get
-//        System.out.println("----------GET-----------");
-//        Session getSession = SessionFactoryConfig.getInstance().getSession();
-//        Customer existCustomer = getSession.get(Customer.class, 1);
-//        System.out.println("Existing Customer:" + existCustomer.toString());
-//        getSession.close();
-//
-//
         CustomerRepository customerRepository1 = new CustomerRepository();
-          List<CustomerProjection> customerprojection = customerRepository1.getCustomerProjection();
-                 for(CustomerProjection customerProjection : customerprojection){
-                    System.out.println(customerProjection);
-                 }
+        List<CustomerProjection> customerprojection = customerRepository1.getCustomerProjection();
+        for (CustomerProjection customerProjection : customerprojection){
+            System.out.println(customerProjection);
+        }
 
 //        // Update
 //        customerRepository = new CustomerRepository();
@@ -141,8 +105,7 @@ public static class AppInitializer {
 //        updateTransaction.commit();
 //        updateSession.close();
 //        System.out.println("-----UPDATE-----");
-
-
+//
 //        // Delete
 //        System.out.println("-----DELETE-----");
 //        Session deleteSession = SessionFactoryConfig
@@ -158,17 +121,21 @@ public static class AppInitializer {
 //        deleteTransaction.commit();
 //        deleteSession.close();
 //        System.out.println("-----DELETE-----");
-}
+    }
 
-
-     private static Customer getCustomer(){
+    private static Customer getCustomer() {
         Customer customer = new Customer();
         customer.setId(1);
-        customer.setName("Chamith");
-        customer.setAddress("Galle");
-        return Customer;
-     }
+        customer.setName("Nadeesha");
+//        customer.setName(getNameIdentifier());
 
+//        List<MobileNo> mobileNos = getMobileNos();
+//        customer.setMobileNos(mobileNos);
+
+        customer.setAddress("Galle");
+//        customer.setSalary(25000);
+        return customer;
+    }
 
 //    private static List<MobileNo> getMobileNos() {
 //        MobileNo homeNo = new MobileNo();
@@ -190,5 +157,4 @@ public static class AppInitializer {
 //        nameIdentifier.setLastName("Silva");
 //        return nameIdentifier;
 //    }
-
 }
