@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "orders")  //`order`
+@Table(name = "`order`")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "order_id")
-    private int orderId;
+    private int id;
 
     @Column(name = "order_description")
     private String description;
@@ -25,43 +25,41 @@ public class Order {
     private Timestamp orderDateTime;
 
     @ManyToOne
-    @JoinColumn(name =  "customer_id")
-    private  Customer customer;
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
-//    @ManyToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY )
+    //    @ManyToMany(cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY)
 //    private List<Item> items = new ArrayList<>();
-    @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY,mappedBy = "order")
-    private  List<OrderDetail> orderDetails = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order")
+    private List<OrderDetail> orderDetails = new ArrayList<>();
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "orderId=" + orderId +
-                ", description='" + description + '\'' +
-                ", orderDateTime=" + orderDateTime +
-                ", customer=" + customer +
-                '}';
-    }
+    public Order() {}
 
-
-
-    public int getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
+    public Order(int id, String description, Timestamp orderDateTime) {
+        this.id = id;
         this.description = description;
+        this.orderDateTime = orderDateTime;
     }
 
-    public Timestamp getOrderDateTime() {
+    public int getId() {
+        return id;
+
+    }
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+
+        public Timestamp getOrderDateTime() {
         return orderDateTime;
     }
 
@@ -69,13 +67,14 @@ public class Order {
         this.orderDateTime = orderDateTime;
     }
 
-
-    public Order(int orderId, String description, Timestamp orderDateTime) {
-        this.orderId = orderId;
-        this.description = description;
-        this.orderDateTime = orderDateTime;
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", orderDateTime=" + orderDateTime +
+                '}';
     }
 
-    public Order() {
-    }
 }
+

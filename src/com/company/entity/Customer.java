@@ -8,21 +8,39 @@ import java.util.List;
 @Table(name = "Customer")
 public class Customer {
 
+    @Id
+    @GeneratedValue(
+            strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
-    private  int id;
+    private int id;
+    @Column(name = "customer_name")
+    private String name;
+    @Column(name = "customer_address")
+    private String address;
 
-    @Column(name = "Customer_name")
-    private  String name;
-
-    @Column(name = "Customer_address")
-    private  String address;
-
-    @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.EAGER , mappedBy = "customer")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "customer")
     private List<Order> orders = new ArrayList<>();
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Customer() {}
+
+    public Customer(int id, String name, String address) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+    }
 
     public int Customer(){
         return id;
     }
+
 
     @Override
     public String toString() {

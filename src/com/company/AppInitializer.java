@@ -3,13 +3,15 @@ package com.company;
 import com.company.embedded.MobileNumber;
 import com.company.embedded.Nameidentifire;
 import com.company.entity.Customer;
+import com.company.entity.Order;
+import com.company.projection.CustomerProjection;
 import com.company.repository.CustomerRepository;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppInitializer {
+public static class AppInitializer {
     public static void main(String[] args) {
 
         //1.save
@@ -30,21 +32,42 @@ public class AppInitializer {
         customer.setSalary(25000);
          session.save(customer);*/
 
-        CustomerRepository customerRepository =new CustomerRepository();
-        customerRepository.saveCustomer(getCustomer());
+        // Save
+//        CustomerRepository customerRepository
+//                = new CustomerRepository();
+//        customerRepository.saveCustomer(getCustomer());
 
-        customerRepository = new CustomerRepository();
-        Customer customer = customerRepository.getCustomer(1);
-        System.out.println(customer);
+        //Get
+//       CustomerRepository customerRepository = new CustomerRepository();
+//        Customer customer = customerRepository.getCustomer(1);
+//        System.out.println(customer);
 
-        CustomerRepository customerRepository1 = new CustomerRepository();
-        customerRepository1.getAllCustomersNative();
 
-        CustomerRepository customerRepository2 = new CustomerRepository();
-        List<Customer> allCustomerJPQL =customerRepository2.getAllCustomerJPQL();
-        for(Customer customer1 : allCustomerJPQL){
-            System.out.println(customer1);
-        }
+        //        CustomerRepository customerRepository1 = new CustomerRepository();
+//        customerRepository1.getAllCustomersNative();
+//
+//        CustomerRepository customerRepository2 = new CustomerRepository();
+//        List<Customer> allCustomerJPQL = customerRepository2.getAllCustomerJPQL();
+//        for (Customer customer : allCustomerJPQL) {
+//            System.out.println(customer);
+//        }
+
+//        CustomerRepository customerRepository3
+//                = new CustomerRepository();
+//        List<Order> ordersList = customerRepository3
+//                .getOrdersByCustomerId(1);
+//        for (Order order : ordersList) {
+//            System.out.println(order);
+//        }
+
+        //    CustomerRepository customerRepository =new CustomerRepository();
+//        List<Customer> customerList = customerRepository.getCustomerHQL();
+//        for(Customer customer : customerList){
+//            System.out.println(customer);
+//
+//        }
+
+
 //        customerRepository = new CustomerRepository();
 //        customer.setAddress("Galle");
 //        customerRepository.updateCustomer(customer);
@@ -68,67 +91,104 @@ public class AppInitializer {
 //        getSession.close();
 //
 //
-//        //3.update
-//        System.out.println("----------UPDATE-----------");
-//        Session updateSession = SessionFactoryConfig.getInstance().getSession();
-//        Transaction updateTransaction =updateSession.beginTransaction();
-//        Customer existCus = updateSession.get(Customer.class,1);
-//        existCus.setAddress("Matara");
-//        updateSession.update(existCus);
+        CustomerRepository customerRepository1 = new CustomerRepository();
+          List<CustomerProjection> customerprojection = customerRepository1.getCustomerProjection();
+                 for(CustomerProjection customerProjection : customerprojection){
+                    System.out.println(customerProjection);
+                 }
+
+//        // Update
+//        customerRepository = new CustomerRepository();
+//        customer.setAddress("Matara");
+//        boolean isUpdated = customerRepository.updateCustomer(customer);
+//        if (isUpdated) {
+//            System.out.println("Customer Updated");
+//        } else {
+//            System.out.println("Update failed");
+//        }
+//
+//        // Delete
+//        customerRepository = new CustomerRepository();
+//        customerRepository.deleteCustomer(customer);
+
+//        // 2 Get
+//        System.out.println("-----GET-----");
+//        Session getSession = SessionFactoryConfig
+//                .getInstance()
+//                .getSession(); // 1
+//        Customer existingCustomer =
+//                getSession
+//                        .get(Customer.class,
+//                                1);
+//        System.out.println("Existing Customer: "
+//                + existingCustomer);
+//        getSession.close();
+//        System.out.println("-----GET-----");
+//
+//        // Update
+//        System.out.println("-----UPDATE-----");
+//        Session updateSession = SessionFactoryConfig
+//                        .getInstance()
+//                        .getSession(); // 2
+//
+//        Transaction updateTransaction = updateSession
+//                .beginTransaction();
+//        Customer existingCus = updateSession
+//                .get(Customer.class,
+//                        1);
+//        existingCus.setAddress("Matara");
+//        updateSession.update(existingCus);
 //        updateTransaction.commit();
 //        updateSession.close();
-//
-//
-//        //4.delete
-//        System.out.println("----------DELETE-----------");
-//        Session deleteSession =SessionFactoryConfig.getInstance().getSession();
-//        Transaction deleteTransaction = deleteSession.beginTransaction();
-//        Customer deleteCus =deleteSession.get(Customer.class,1);
-//        deleteSession.delete(deleteCus);
+//        System.out.println("-----UPDATE-----");
+
+
+//        // Delete
+//        System.out.println("-----DELETE-----");
+//        Session deleteSession = SessionFactoryConfig
+//                .getInstance()
+//                .getSession();  // 3
+//        Transaction deleteTransaction =
+//                deleteSession
+//                .beginTransaction();
+//        Customer existingCusDelete =
+//                deleteSession
+//                .get(Customer.class, 1);
+//        deleteSession.delete(existingCusDelete);
 //        deleteTransaction.commit();
 //        deleteSession.close();
-//        }
+//        System.out.println("-----DELETE-----");
+}
 
 
-    private static Customer getCustomer() {
-
+     private static Customer getCustomer(){
         Customer customer = new Customer();
         customer.setId(1);
-        customer.setName("saman");
-        customer.setAddress("Matara");
+        customer.setName("Chamith");
+        customer.setAddress("Galle");
+        return Customer;
+     }
 
-//        customer.setId(1);
-//        Nameidentifire nameidentifire =  getNameIdentifire();
-//        MobileNumber homeNo =new MobileNumber();
-//        homeNo.setType("Home");
-//        homeNo.setMobileNo("0412229821");
+
+//    private static List<MobileNo> getMobileNos() {
+//        MobileNo homeNo = new MobileNo();
+//        homeNo.setType("HOME");
+//        homeNo.setMobileNo("0914578980");
+//        MobileNo mobileNo = new MobileNo();
+//        mobileNo.setType("MOBILE");
+//        mobileNo.setMobileNo("0715678679");
+//        List<MobileNo> mobileNos = new ArrayList<>();
+//        mobileNos.add(homeNo);
+//        mobileNos.add(mobileNo);
+//        return mobileNos;
+//    }
 //
-//        MobileNumber mobileNo = new MobileNumber();
-//        mobileNo.setType("Mobile");
-//        mobileNo.setMobileNo("0716490250");
-//
-//        List<MobileNumber> mobileNumbers = new ArrayList<>();
-//        mobileNumbers.add(homeNo);
-//        mobileNumbers.add(mobileNo);
-       // customer.setMobileNumbers(mobileNumbers);
+//    private static NameIdentifier getNameIdentifier() {
+//        NameIdentifier nameIdentifier = new NameIdentifier();
+//        nameIdentifier.setFirstName("Saman");
+//        nameIdentifier.setMiddleName("De");
+//        nameIdentifier.setLastName("Silva");
+//        return nameIdentifier;
+//    }
 
-//          nameidentifire.setFirstName("Saman");
-//          nameidentifire.setMiddleName("De");
-//          nameidentifire.setLastName("Silva");
-       // customer.setName(nameidentifire);
-        //customer.setName(nameidentifire);
-
-//          customer.setSalary(50000);
-  //      customer.setAddress("Matara");
-      //  customer.setSalary(50000);
-        return customer;
-    }
-
-    //         private static Nameidentifire getNameIdentifire(){
-//             Nameidentifire nameidentifire = new Nameidentifire();
-//             nameidentifire.setName("Saman");
-//             nameidentifire.setMiddleName("De");
-//             nameidentifire.setLastName("Silva");
-//             return nameidentifire;
-//         }
 }
