@@ -32,9 +32,9 @@ public class PersistentState {
         System.out.println("cusId :" + cusId);
         boolean isPersistent = session.contains(customer);
         if(isPersistent){
-            System.out.println("This object is not in  Persistent state");
-        }else{
             System.out.println("This object is in Persistent state");
+        }else{
+            System.out.println("This object is not in Persistent state");
         }
         session.close();
 
