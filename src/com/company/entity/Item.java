@@ -22,6 +22,10 @@ public class Item {
     @Column(name = "unit_price")
     private double unitPrice;
 
+    public Item() {
+
+    }
+
     public int getId() {
         return id;
     }
