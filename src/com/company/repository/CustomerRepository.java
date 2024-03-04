@@ -6,6 +6,14 @@ import com.company.entity.Customer;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
+
+import java.lang.annotation.Native;
+import java.util.List;
+
+import java.util.List;
+
 public class CustomerRepository {
     private  final Session session;
     public  CustomerRepository(){
@@ -77,6 +85,27 @@ public class CustomerRepository {
             e.printStackTrace();
             return  false;
         }
+
+    }
+
+    public List<Object[]> getAllCustomersNative(){
+        String sql = "SELECT * FROM customer";
+        NativeQuery query =session.createSQLQuery(sql);
+        List<Object[]> list = query.list();
+        for(Object customer : list){
+            System.out.println(customer);
+        }
+        session.close();
+        return list;
+    }
+
+    public  List<Customer> getAllCustomerJPQL(){
+        String sql = "SELECT C FROM Customer As C";
+        Query query =session.createQuery(sql);
+        List  list = query.list();
+        session.close();
+        return list;
+
 
     }
 }
