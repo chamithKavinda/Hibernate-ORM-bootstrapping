@@ -33,12 +33,14 @@ public class Item {
                 ", name=" + name +
                 ", qty=" + qty +
                 ", unitPrice=" + unitPrice +
-                ", orders=" + orders +
                 '}';
     }
 
-    @ManyToMany(mappedBy = "items")
-    private List<Order> orders = new ArrayList<>();
+//    @ManyToMany(mappedBy = "items")
+//    private List<Order> orders = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL , fetch =  FetchType.LAZY , mappedBy = "item")
+    private  List<OrderDetail> orderDetails = new ArrayList<>();
 
     public void setId(int id) {
         this.id = id;

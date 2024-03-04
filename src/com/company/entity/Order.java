@@ -30,7 +30,7 @@ public class Order {
 
 //    @ManyToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY )
 //    private List<Item> items = new ArrayList<>();
-    @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY,mappedBy = "order")
     private  List<OrderDetail> orderDetails = new ArrayList<>();
 
     @Override

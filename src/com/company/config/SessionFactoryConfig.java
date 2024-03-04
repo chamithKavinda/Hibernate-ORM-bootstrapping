@@ -3,6 +3,7 @@ package com.company.config;
 import com.company.entity.Customer;
 import com.company.entity.Item;
 import com.company.entity.Order;
+import com.company.entity.OrderDetail;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -48,6 +49,7 @@ public class SessionFactoryConfig {
                 .addAnnotatedClass(Customer.class)
                 .addAnnotatedClass(Order.class)
                 .addAnnotatedClass(Item.class)
+                .addAnnotatedClass(OrderDetail.class)
                 .buildSessionFactory();
     }
 
