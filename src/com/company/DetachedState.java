@@ -49,5 +49,17 @@ public class DetachedState {
         }
 
 
+        //Persistent state
+        customer.setAddress("Hambanthota");
+        detachSession.save(customer);
+        boolean isPersistent1 = detachSession.contains(customer);
+
+        if(isPersistent1){
+            System.out.println("This object is in  Persistent state");
+        }else{
+            System.out.println("This object is  not in Persistent state");
+        }
+        detachSession.close();
+
     }
 }
